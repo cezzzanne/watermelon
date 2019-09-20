@@ -1,10 +1,17 @@
 import React from 'react'
+import { InputGroup, InputGroupText, InputGroupAddon, FormInput, DatePicker, Button, ButtonGroup, Tooltip } from "shards-react";
 
 class AddListing extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {currentDisplay: <DashboardOverview/>, goDashboardTab: 'nav-link active', serviceListingsTab: 'nav-link', profileTab: 'nav-link', newListingTab: 'nav-link'};
+        this.state = {datesVisible: false, startDate: new Date(), endDate: new Date()};
+
         this.goDashboard = this.goDashboard.bind(this);
+        this.toggleDates = this.toggleDates.bind(this);
+        this.removeDates = this.removeDates.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
+        this.handleEndDateChange = this.handleEndDateChange.bind(this);
+
         this.goServiceListings = this.goServiceListings.bind(this);
         this.goProfile = this.goProfile.bind(this);
         this.goNewListing = this.goNewListing.bind(this);
@@ -27,6 +34,29 @@ class AddListing extends React.Component {
 
     goNewListing(event) {
 
+    }
+
+    toggleDates(event) {
+        event.target.outline = false;
+        this.setState({datesVisible: true});
+    }
+
+
+    removeDates(event) {
+        this.setState({datesVisible: false});
+    }
+
+    handleDateChange(val) {
+        this.setState({
+            startDate: new Date(val),
+            endDate: new Date(val)
+        });
+    }
+
+    handleEndDateChange(val) {
+        this.setState({
+            endDate: new Date(val)
+        });
     }
 
     render() {
@@ -74,14 +104,7 @@ class AddListing extends React.Component {
                         </div>
                         <form action="#"
                               className="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
-                            <div className="input-group input-group-seamless ml-3">
-                                <div className="input-group-prepend">
-                                    <div className="input-group-text">
-                                        <i className="fas fa-search"></i>
-                                    </div>
-                                </div>
-                                <input className="navbar-search form-control" type="text"
-                                       placeholder="Find new things...." aria-label="Search" /></div>
+
                         </form>
                         <div className="nav-wrapper">
                             <ul className="nav flex-column">
@@ -128,14 +151,6 @@ class AddListing extends React.Component {
                         <div className="main-navbar sticky-top bg-white">
                             <nav className="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
                                 <form action="#" className="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
-                                    <div className="input-group input-group-seamless ml-3">
-                                        <div className="input-group-prepend">
-                                            <div className="input-group-text">
-                                                <i className="fas fa-search"></i>
-                                            </div>
-                                        </div>
-                                        <input className="navbar-search form-control" type="text"
-                                               placeholder="Find new things..." aria-label="Search" /></div>
                                 </form>
                                 <ul className="navbar-nav border-left flex-row ">
                                     <li className="nav-item border-right dropdown notifications">
@@ -210,8 +225,6 @@ class AddListing extends React.Component {
                                 </nav>
                             </nav>
                         </div>
-
-
                         <div className="main-content-container container-fluid px-4">
                             <div className="page-header row no-gutters py-4">
                                 <div className="col-12 col-sm-4 text-center text-sm-left mb-0">
@@ -232,9 +245,76 @@ class AddListing extends React.Component {
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-12">
+
                                     <div className='card card-small mb-3'>
                                         <div className="card-header border-bottom">
-                                            <h6 className="m-0">Actions</h6>
+                                            <h6 className="m-0">Requirements</h6>
+                                        </div>
+                                        <div className='card-body p-0'>
+                                            <ul className="list-group list-group-flush">
+                                                <li className="list-group-item px-3 pb-2">
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                            <select defaultValue="Type" className="custom-select custom-select-md">
+                                                                <option>Service</option>
+                                                                <option value="1">Item</option>
+                                                                <option value="2">Experience</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div style={{marginTop: 10}} className="row">
+                                                        <div className="col-12">
+                                                    <InputGroup className="mb-2">
+                                                        <FormInput placeholder="Total Amount" />
+                                                        <InputGroupAddon type="append">
+                                                            <InputGroupText>€</InputGroupText>
+                                                        </InputGroupAddon>
+                                                    </InputGroup>
+                                                        </div>
+                                                    </div>
+                                                    <div style={{marginTop: 10}} className="row">
+                                                        <div className="col-12">
+                                                            <div className="custom-file">
+                                                            <input type="file" className="custom-file-input" />
+                                                            <label className="custom-file-label">Add an image </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div style={{marginTop: 10}} className="row">
+                                                        <div className="col-12 text-center">
+                                                            <ButtonGroup>
+                                                                <Button id="TooltipExample" onClick={this.removeDates} outline={this.state.datesVisible} theme='primary'>Continuous</Button>
+                                                                <Button onClick={this.toggleDates} outline={!this.state.datesVisible} theme='primary'>Select Dates</Button>
+                                                            </ButtonGroup>
+                                                        </div>
+                                                    </div>
+                                                    <div hidden={!this.state.datesVisible} style={{marginTop: 10}} className="row">
+                                                        <div className="col-6 text-center">
+                                                            <small className="text-muted"> Start Date </small>
+                                                            <DatePicker
+                                                                selected={this.state.startDate}
+                                                                onChange={this.handleDateChange}
+                                                                size="sm"
+                                                                dropdownMode="select"
+                                                            />
+                                                        </div>
+                                                        <div className="col-6 text-center">
+                                                            <small className="text-muted"> End Date </small>
+                                                            <DatePicker
+                                                                selected={this.state.endDate}
+                                                                onChange={this.handleEndDateChange}
+                                                                size="sm"
+                                                                dropdownMode="select"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div className='card card-small mb-3'>
+                                        <div className="card-header border-bottom">
+                                            <h6 className="m-0">Status</h6>
                                         </div>
                                         <div className='card-body p-0'>
                                             <ul className="list-group list-group-flush">
@@ -242,18 +322,15 @@ class AddListing extends React.Component {
                         <span className="d-flex mb-2">
                           <i className="material-icons mr-1">flag</i>
                           <strong className="mr-1">Status:</strong> Draft
-                          <a className="ml-auto" href="#">Edit</a>
                         </span>
                                                     <span className="d-flex mb-2">
                           <i className="material-icons mr-1">visibility</i>
                           <strong className="mr-1">Visibility:</strong>
                           <strong className="text-success">Public</strong>
-                          <a className="ml-auto" href="#">Edit</a>
                         </span>
                                                     <span className="d-flex mb-2">
                           <i className="material-icons mr-1">calendar_today</i>
                           <strong className="mr-1">Schedule:</strong> Now
-                          <a className="ml-auto" href="#">Edit</a>
                         </span>
                                                     <span className="d-flex">
                           <i className="material-icons mr-1">score</i>
@@ -272,58 +349,8 @@ class AddListing extends React.Component {
                                             </ul>
                                         </div>
                                     </div>
-                                    <div className='card card-small mb-3'>
-                                        <div className="card-header border-bottom">
-                                            <h6 className="m-0">Categories</h6>
-                                        </div>
-                                        <div className='card-body p-0'>
-                                            <ul className="list-group list-group-flush">
-                                                <li className="list-group-item px-3 pb-2">
-                                                    <div className="custom-control custom-checkbox mb-1">
-                                                        <input type="checkbox" className="custom-control-input" id="category1"
-                                                               checked />
-                                                        <label className="custom-control-label"
-                                                               htmlFor="category1">For Fun</label>
-                                                    </div>
-                                                    <div className="custom-control custom-checkbox mb-1">
-                                                        <input type="checkbox" className="custom-control-input" id="category2"
-                                                               checked />
-                                                        <label className="custom-control-label"
-                                                               htmlFor="category2">Exercise</label>
-                                                    </div>
-                                                    <div className="custom-control custom-checkbox mb-1">
-                                                        <input type="checkbox" className="custom-control-input" id="category3" />
-                                                        <label className="custom-control-label"
-                                                               htmlFor="category3">Travel</label>
-                                                    </div>
-                                                    <div className="custom-control custom-checkbox mb-1">
-                                                        <input type="checkbox" className="custom-control-input" id="category4" />
-                                                        <label className="custom-control-label"
-                                                               htmlFor="category4">New To The City</label>
-                                                    </div>
-                                                    <div className="custom-control custom-checkbox mb-1">
-                                                        <input type="checkbox" className="custom-control-input" id="category5" />
-                                                        <label className="custom-control-label"
-                                                               htmlFor="category5">To Loan</label>
-                                                    </div>
-                                                </li>
-                                                <li className="list-group-item d-flex px-3">
-                                                    <div className="input-group">
-                                                        <input type="text" className="form-control" placeholder="New category"
-                                                               aria-label="Add new category" aria-describedby="basic-addon2" />
-                                                        <div className="input-group-append">
-                                                            <button className="btn btn-white px-2" type="button">
-                                                                <i className="material-icons">add</i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-
                         </div>
                         <footer className="main-footer d-flex p-2 px-3 bg-white border-top">
                             <ul className="nav">
@@ -360,6 +387,7 @@ class AddListing extends React.Component {
             <script src="../static/js/shards-dashboards.1.1.0.min.js" defer></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.min.js" defer></script>
             <script src="../static/js/app/app-blog-new-post.1.1.0.js" defer></script>
+            <script src="../static/js/testFile.js" defer></script>
             </body>
             </html>
         );

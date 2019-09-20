@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2d6b9ec-74f7-49d5-83f7-92ccda67df90" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/addListing.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/addListing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/app/app-blog-new-post.1.1.0.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/app/app-blog-new-post.1.1.0.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/testFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/testFile.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,20 +21,21 @@
     <session id="54115680">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.5" value="2" />
+          <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="8" />
+          <entry key="css" value="9" />
           <entry key="gitignore" value="1" />
-          <entry key="html" value="25" />
-          <entry key="js" value="41" />
+          <entry key="html" value="29" />
+          <entry key="js" value="58" />
           <entry key="json" value="4" />
           <entry key="lock" value="1" />
           <entry key="ts" value="1" />
@@ -38,10 +43,10 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="8" />
-          <entry key="HTML" value="25" />
+          <entry key="CSS" value="9" />
+          <entry key="HTML" value="29" />
           <entry key="JSON" value="4" />
-          <entry key="JavaScript" value="41" />
+          <entry key="JavaScript" value="58" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="TypeScript" value="1" />
           <entry key="yarn.lock" value="1" />
@@ -50,66 +55,28 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="172" />
-          <entry key="gitignore" value="21" />
-          <entry key="html" value="5" />
-          <entry key="js" value="13508" />
+          <entry key="gitignore" value="24" />
+          <entry key="html" value="6" />
+          <entry key="js" value="15642" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="172" />
-          <entry key="HTML" value="5" />
-          <entry key="JavaScript" value="13508" />
-          <entry key="PLAIN_TEXT" value="21" />
+          <entry key="HTML" value="6" />
+          <entry key="JavaScript" value="15642" />
+          <entry key="PLAIN_TEXT" value="24" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="141" column="54" selection-start-line="141" selection-start-column="54" selection-end-line="141" selection-end-column="54" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-                <element signature="n#!!block;n#handleChange#0;n#NameForm#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/serviceList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="35" column="71" selection-start-line="35" selection-start-column="71" selection-end-line="35" selection-end-column="71" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-                <element signature="e#943#2521#0" />
-                <element signature="e#2663#7087#0" />
-                <element signature="e#7221#14017#0" />
-                <element signature="e#14134#14558#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/pages/addListing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/fullListing.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+            <state relative-caret-position="828">
+              <caret line="287" column="74" selection-start-line="287" selection-start-column="74" selection-end-line="287" selection-end-column="74" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -128,23 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>style=&quot;</find>
-      <find>blog dash</find>
-      <find>style</find>
-      <find>&lt;!--</find>
-      <find>last</find>
-      <find>main-content-con</find>
-      <find>button</find>
-      <find>small but</find>
-      <find>bookmar</find>
-      <find>search for</find>
-      <find>header-navbar</find>
-      <find>http-eq</find>
-      <find>chart</find>
-      <find>full re</find>
-      <find>posts</find>
-      <find>canvas</find>
-      <find>main-navbar s</find>
       <find>toggle-side</find>
       <find>profile</find>
       <find>words</find>
@@ -156,8 +106,25 @@
       <find>pablo are</find>
       <find>Pablo Arella</find>
       <find>see M</find>
-      <find>Modal</find>
       <find>see more</find>
+      <find>search</find>
+      <find>searc</find>
+      <find>last week</find>
+      <find>start date</find>
+      <find>date</find>
+      <find>blog-overview-dat</find>
+      <find>blog-overview-date</find>
+      <find>save dr</find>
+      <find>date-range</find>
+      <find>class</find>
+      <find>class=</find>
+      <find>Modal</find>
+      <find>blog-overview-date-range</find>
+      <find>datepic</find>
+      <find>id=&quot;blog-overview-date-range-1date</find>
+      <find>event</find>
+      <find>descr</find>
+      <find>info</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -176,22 +143,23 @@
         <option value="$PROJECT_DIR$/components/serviceListing.js" />
         <option value="$PROJECT_DIR$/components/profile.js" />
         <option value="$PROJECT_DIR$/components/newListing.js" />
-        <option value="$PROJECT_DIR$/Watermwlon-Dash/HTML/index.html" />
         <option value="$PROJECT_DIR$/components/jsfiles/newListingJS.js" />
         <option value="$PROJECT_DIR$/components/jsfiles/serviceListingScripts.js" />
-        <option value="$PROJECT_DIR$/static/js/app/app-blog-overview.1.1.0.js" />
         <option value="$PROJECT_DIR$/components/jsfiles/dashboardOverviewScripts.js" />
         <option value="$PROJECT_DIR$/static/js/test.js" />
-        <option value="$PROJECT_DIR$/static/js/testFile.js" />
         <option value="$PROJECT_DIR$/components/dashboardOverview.js" />
         <option value="$PROJECT_DIR$/pages/dashboard.js" />
-        <option value="$PROJECT_DIR$/pages/addListing.js" />
-        <option value="$PROJECT_DIR$/pages/userDashboard.js" />
-        <option value="$PROJECT_DIR$/pages/profile.js" />
-        <option value="$PROJECT_DIR$/pages/index.js" />
         <option value="$PROJECT_DIR$/components/fullListing.js" />
         <option value="$PROJECT_DIR$/pages/serviceList.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/static/js/app/app-blog-overview.1.1.0.js" />
+        <option value="$PROJECT_DIR$/static/js/app/app-blog-new-post.1.1.0.js" />
+        <option value="$PROJECT_DIR$/pages/userDashboard.js" />
+        <option value="$PROJECT_DIR$/pages/index.js" />
+        <option value="$PROJECT_DIR$/static/js/testFile.js" />
+        <option value="$PROJECT_DIR$/pages/profile.js" />
+        <option value="$PROJECT_DIR$/Watermwlon-Dash/HTML/index.html" />
+        <option value="$PROJECT_DIR$/pages/addListing.js" />
       </list>
     </option>
   </component>
@@ -212,9 +180,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
     <option name="width" value="1680" />
-    <option name="height" value="947" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -234,6 +201,22 @@
               <item name="pablo-arellano" type="b2602c69:ProjectViewProjectNode" />
               <item name="pablo-arellano" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pablo-arellano" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pablo-arellano" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pablo-arellano" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pablo-arellano" type="462c0819:PsiDirectoryNode" />
+              <item name="Watermwlon-Dash" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pablo-arellano" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pablo-arellano" type="462c0819:PsiDirectoryNode" />
+              <item name="Watermwlon-Dash" type="462c0819:PsiDirectoryNode" />
+              <item name="HTML" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -285,12 +268,13 @@
       <workItem from="1567290974081" duration="18447000" />
       <workItem from="1567728010973" duration="23787000" />
       <workItem from="1568064563497" duration="162000" />
-      <workItem from="1568161434350" duration="15775000" />
+      <workItem from="1568161434350" duration="23476000" />
+      <workItem from="1568913462928" duration="3867000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65834000" />
+    <option name="totallyTimeSpent" value="77402000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -310,7 +294,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.36307055" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.28630707" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -389,20 +373,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/nav.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/normalize.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4420">
-          <caret line="170" column="16" selection-start-line="170" selection-start-column="16" selection-end-line="170" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/components/nav.js" />
     <entry file="file://$PROJECT_DIR$/components/asideBar.js" />
     <entry file="file://$PROJECT_DIR$/static/css/shards-dashboards.1.1.0.min.css">
       <provider selected="true" editor-type-id="text-editor" />
@@ -422,81 +393,14 @@
         <state relative-caret-position="-3476" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/jsfiles/serviceListingScripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="47" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Watermwlon-Dash/HTML/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/components/jsfiles/serviceListingScripts.js" />
     <entry file="file://$PROJECT_DIR$/static/js/extras.1.1.0.min.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/app/app-blog-overview.1.1.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/testFile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/serviceListing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="204" column="18" lean-forward="true" selection-start-line="204" selection-start-column="18" selection-end-line="204" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Watermwlon-Dash/HTML/components-blog-posts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="506" column="3" selection-start-line="506" selection-start-column="3" selection-end-line="513" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/dashboardOverview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="355" column="22" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="355" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/jsfiles/dashboardOverviewScripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="29" selection-end-column="89" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="106" column="21" lean-forward="true" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/components/serviceListing.js" />
+    <entry file="file://$PROJECT_DIR$/components/dashboardOverview.js" />
+    <entry file="file://$PROJECT_DIR$/components/jsfiles/dashboardOverviewScripts.js" />
+    <entry file="file://$PROJECT_DIR$/components/profile.js" />
     <entry file="file://$PROJECT_DIR$/Watermwlon-Dash/HTML/user-profile-lite.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="509">
@@ -511,13 +415,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/newListing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2678">
-          <caret line="108" column="40" selection-start-line="108" selection-start-column="40" selection-end-line="108" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/components/newListing.js" />
     <entry file="file://$PROJECT_DIR$/Watermwlon-Dash/HTML/add-new-post.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
@@ -525,55 +423,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/addListing.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
+        <state relative-caret-position="285">
           <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#6810#13602#0" />
-            <element signature="e#6997#7755#0" />
-            <element signature="e#23211#24090#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="184" column="128" selection-start-line="184" selection-start-column="125" selection-end-line="184" selection-end-column="128" />
-          <folding>
-            <element signature="e#886#2152#0" />
-            <element signature="e#7003#7761#0" />
-            <element signature="e#40294#41173#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/userDashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="187" column="128" selection-start-line="187" selection-start-column="128" selection-end-line="187" selection-end-column="128" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="141" column="54" selection-start-line="141" selection-start-column="54" selection-end-line="141" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-            <element signature="n#!!block;n#handleChange#0;n#NameForm#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/fullListing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -591,10 +444,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/components/fullListing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="338">
+          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/app/app-blog-new-post.1.1.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Watermwlon-Dash/HTML/components-blog-posts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="506" column="3" selection-start-line="506" selection-start-column="3" selection-end-line="513" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/shards-ui/dist/js/shards.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-66">
+          <caret line="1754" column="4" selection-start-line="1754" selection-start-column="4" selection-end-line="1754" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/testFile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/app/app-blog-overview.1.1.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="13" column="32" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/normalize.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="758">
+          <caret line="165" column="1" selection-start-line="165" selection-start-column="1" selection-end-line="165" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/userDashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="28" column="22" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="176" column="51" selection-start-line="176" selection-start-column="51" selection-end-line="176" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+            <element signature="n#!!block;n#handleChange#0;n#NameForm#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="251" column="38" selection-start-line="251" selection-start-column="38" selection-end-line="251" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Watermwlon-Dash/HTML/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="28" column="48" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/addListing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="287" column="74" selection-start-line="287" selection-start-column="74" selection-end-line="287" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -244,7 +244,7 @@ class Profile extends React.Component {
                                                 </div>
                                             </li>
                                             <li className="list-group-item p-4">
-                                                <strong className="text-muted d-block mb-2">Description</strong>
+                                                <strong className="text-muted d-block mb-2">Tell us about yourself</strong>
                                                 <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</span>
                                             </li>
                                         </ul>

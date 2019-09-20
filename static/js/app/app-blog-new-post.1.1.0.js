@@ -8,8 +8,9 @@
 
 (function ($) {
   $(document).ready(function () {
+      $('#blog-overview-date-range').datepicker({});
 
-    var toolbarOptions = [
+      var toolbarOptions = [
       [{ 'header': [1, 2, 3, 4, 5, false] }],
       ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
       ['blockquote', 'code-block'],
