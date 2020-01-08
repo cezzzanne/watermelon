@@ -1,20 +1,35 @@
 import React from 'react'
+import Uppy from '@uppy/core'
+import Dashboard from '@uppy/dashboard'
+import Tus from '@uppy/tus'
+import XHRUpload from '@uppy/xhr-upload';
+import {Alert} from "shards-react";
+
 
 class Profile extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {currentDisplay: <DashboardOverview/>, goDashboardTab: 'nav-link active', serviceListingsTab: 'nav-link', profileTab: 'nav-link', newListingTab: 'nav-link'};
+        this.state = {name: '', lastName: '', profession: '', alterEgo: '', description: '', location: '', profileImg: '', email: '', uppy: null, userID: '',
+        loading: false, uploadSuccess: false, uploadFailed: false};
         this.goDashboard = this.goDashboard.bind(this);
         this.goServiceListings = this.goServiceListings.bind(this);
         this.goProfile = this.goProfile.bind(this);
         this.goNewListing = this.goNewListing.bind(this);
-        // // this.setScripts = this.setScripts.bind(this);
+        this.submitProfile = this.submitProfile.bind(this);
+        this.handleChangeProfile = this.handleChangeProfile.bind(this);
+        this.openImageModal = this.openImageModal.bind(this);
+        this.closeAlert = this.closeAlert.bind(this);
+        this.goMessages = this.goMessages.bind(this);
+    }
+
+    closeAlert() {
+        this.setState({uploadSuccess: false, uploadFailed: false});
     }
 
     goDashboard(event) {
         document.location.href = '/userdashboard';
-
     }
+
 
     goServiceListings(event) {
         document.location.href = '/servicelist';
@@ -30,18 +45,112 @@ class Profile extends React.Component {
 
     }
 
+    goMessages(event) {
+        document.location.href = '/messages';
+    }
+
+
+    async submitProfile(e) {
+        e.preventDefault();
+        console.log(this.state);
+        this.setState({loading: true});
+        fetch('https://watermelonapi.herokuapp.com/change-profile',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({name: this.state.name, lastName: this.state.lastName, profession: this.state.profession,
+                    alterEgo: this.state.alterEgo, description: this.state.description, location: this.state.location,
+                    profileImg: this.state.profileImg, email: this.state.email, userID: this.state.userID})
+            }).then(async (res) => {
+                const data = await res.json();
+                console.log(data);
+                if (data.success) {
+                    this.setState({loading: false, uploadSuccess: true});
+                } else {
+                    this.setState({loading: false, uploadFailed: true});
+                }
+        }).catch((error) => {
+            console.log(JSON.stringify(error));
+        });
+    }
+
+
+    async componentDidMount() {
+        console.log('didmount');
+        const userID = await localStorage.getItem('userID');
+        this.setState({userID: userID});
+        fetch('https://watermelonapi.herokuapp.com/get-profile',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: userID
+                })
+            }).then(async (res) => {
+            const data = await res.json();
+            const user = data.user;
+            console.log(data);
+            this.setState({name: user.name, lastName: user.last_name, location: user.location, profileImg: user.image, description: user.description, email: user.email, profession: user.profession,
+            alterEgo: user.alter_ego})
+        });
+        this.state.uppy = Uppy({
+            restrictions: {
+                maxNumberOfFiles: 1,
+                minNumberOfFiles: 1,
+            }});
+        this.state.uppy.use(Dashboard, {
+            id: 'dash2',
+            trigger: '#select-files',
+            showProgressDetails: true,
+            proudlyDisplayPoweredByUppy: false,
+            showLinkToFileUploadResult: false,
+        })
+            .use(XHRUpload, { endpoint: 'https://watermelonapi.herokuapp.com/add-service/image' })
+            .on('complete', (result) => {
+                this.setState({profileImg: result.successful[0].response.body.image});
+                console.log(this.state.profileImg);
+                this.state.uppy.getPlugin('dash2').closeModal();
+            });
+        console.log('mounting')
+    }
+
+    openImageModal() {
+        const dashboard = this.state.uppy.getPlugin('dash2');
+        dashboard.openModal();
+    }
+
+    handleChangeProfile(event) {
+        const element = event.target;
+        const target = element.id;
+        const value = element.value;
+        this.setState({[target]: value});
+    }
+
+    async logout() {
+        localStorage.clear();
+        document.location.href = '/';
+    }
+
     render() {
         return (
             <html className="no-js h-100" lang="en">
             <head>
                 <meta charSet="utf-8" />
-                <title>watermelon</title>
+                <title>twise</title>
                 <meta name="description"
                       content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components." />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
                       rel="stylesheet" />
+                <link href="https://transloadit.edgly.net/releases/uppy/v1.4.0/uppy.min.css" rel="stylesheet" />
+
                 <link rel="stylesheet"
                       href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
                       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -63,7 +172,7 @@ class Profile extends React.Component {
                                         <img id="main-logo" className="d-inline-block align-top mr-1"
                                              style={{maxWidth: 25}} src="https://img.icons8.com/ios/100/000000/watermelon.png"
                                              alt="Shards Dashboard" />
-                                        <span className="d-none d-md-inline ml-1">watermelon</span>
+                                        <span className="d-none d-md-inline ml-1">twise</span>
                                     </div>
                                 </a>
                                 <a className="toggle-sidebar d-sm-inline d-md-none d-lg-none">
@@ -71,29 +180,12 @@ class Profile extends React.Component {
                                 </a>
                             </nav>
                         </div>
-                        <form action="#"
-                              className="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
-                            <div className="input-group input-group-seamless ml-3">
-                                <div className="input-group-prepend">
-                                    <div className="input-group-text">
-                                        <i className="fas fa-search"></i>
-                                    </div>
-                                </div>
-                                <input className="navbar-search form-control" type="text"
-                                       placeholder="Find new things...." aria-label="Search" /></div>
-                        </form>
                         <div className="nav-wrapper">
                             <ul className="nav flex-column">
                                 <li className="nav-item">
                                     <a className='nav-link' href="#" onClick={this.goServiceListings}>
                                         <i className="material-icons">view_module</i>
                                         <span>Listings</span>
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className='nav-link' href="#" onClick={this.goDashboard}>
-                                        <i className="material-icons">edit</i>
-                                        <span>Dashboard</span>
                                     </a>
                                 </li>
                                 <li className="nav-item">
@@ -109,8 +201,8 @@ class Profile extends React.Component {
                                     </a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link " href="#">
-                                        <i className="material-icons">message</i>
+                                    <a className="nav-link " href="#" onClick={this.goMessages}>
+                                        <i className="material-icons" >message</i>
                                         <span>Inbox</span>
                                     </a>
                                 </li>
@@ -127,14 +219,7 @@ class Profile extends React.Component {
                         <div className="main-navbar sticky-top bg-white">
                             <nav className="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
                                 <form action="#" className="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
-                                    <div className="input-group input-group-seamless ml-3">
-                                        <div className="input-group-prepend">
-                                            <div className="input-group-text">
-                                                <i className="fas fa-search"></i>
-                                            </div>
-                                        </div>
-                                        <input className="navbar-search form-control" type="text"
-                                               placeholder="Find new things..." aria-label="Search" /></div>
+
                                 </form>
                                 <ul className="navbar-nav border-left flex-row ">
                                     <li className="nav-item border-right dropdown notifications">
@@ -143,58 +228,58 @@ class Profile extends React.Component {
                                            aria-expanded="false">
                                             <div className="nav-link-icon__wrapper">
                                                 <i className="material-icons">&#xE7F4;</i>
-                                                <span className="badge badge-pill badge-danger">2</span>
+                                                <span className="badge badge-pill badge-danger">0</span>
                                             </div>
                                         </a>
-                                        <div className="dropdown-menu dropdown-menu-small"
-                                             aria-labelledby="dropdownMenuLink">
-                                            <a className="dropdown-item" href="#">
-                                                <div className="notification__icon-wrapper">
-                                                    <div className="notification__icon">
-                                                        <i className="material-icons">&#xE6E1;</i>
-                                                    </div>
-                                                </div>
-                                                <div className="notification__content">
-                                                    <span className="notification__category">Your Services</span>
-                                                    <p>4 people have messaged you about your new item!
+                                        {/*<div className="dropdown-menu dropdown-menu-small"*/}
+                                             {/*aria-labelledby="dropdownMenuLink">*/}
+                                            {/*<a className="dropdown-item" href="#">*/}
+                                                {/*<div className="notification__icon-wrapper">*/}
+                                                    {/*<div className="notification__icon">*/}
+                                                        {/*<i className="material-icons">&#xE6E1;</i>*/}
+                                                    {/*</div>*/}
+                                                {/*</div>*/}
+                                                {/*<div className="notification__content">*/}
+                                                    {/*<span className="notification__category">Your Services</span>*/}
+                                                    {/*<p>4 people have messaged you about your new item!*/}
 
-                                                        <span className="text-success text-semibold"> 28%</span> in the
-                                                        last week. Great job!</p>
-                                                </div>
-                                            </a>
-                                            <a className="dropdown-item" href="#">
-                                                <div className="notification__icon-wrapper">
-                                                    <div className="notification__icon">
-                                                        <i className="material-icons">&#xE8D1;</i>
-                                                    </div>
-                                                </div>
-                                                <div className="notification__content">
-                                                    <span className="notification__category">Services</span>
-                                                    <p>Last week your revenue descreased by
-                                                        <span className="text-danger text-semibold"> 5.52%</span>. It
-                                                        could have been worse!</p>
-                                                </div>
-                                            </a>
-                                            <a className="dropdown-item notification__all text-center" href="#"> View
-                                                all Notifications </a>
-                                        </div>
+                                                        {/*<span className="text-success text-semibold"> 28%</span> in the*/}
+                                                        {/*last week. Great job!</p>*/}
+                                                {/*</div>*/}
+                                            {/*</a>*/}
+                                            {/*<a className="dropdown-item" href="#">*/}
+                                                {/*<div className="notification__icon-wrapper">*/}
+                                                    {/*<div className="notification__icon">*/}
+                                                        {/*<i className="material-icons">&#xE8D1;</i>*/}
+                                                    {/*</div>*/}
+                                                {/*</div>*/}
+                                                {/*<div className="notification__content">*/}
+                                                    {/*<span className="notification__category">Services</span>*/}
+                                                    {/*<p>Last week your revenue descreased by*/}
+                                                        {/*<span className="text-danger text-semibold"> 5.52%</span>. It*/}
+                                                        {/*could have been worse!</p>*/}
+                                                {/*</div>*/}
+                                            {/*</a>*/}
+                                            {/*<a className="dropdown-item notification__all text-center" href="#"> View*/}
+                                                {/*all Notifications </a>*/}
+                                        {/*</div>*/}
                                     </li>
                                     <li className="nav-item dropdown">
                                         <a className="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown"
                                            href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                            <img className="user-avatar rounded-circle mr-2" src="../static/images/avatars/1.jpg"
-                                                 alt="User Avatar" />
-                                            <span className="d-none d-md-inline-block">Pablo Arellano</span>
+                                            <img className="user-avatar rounded-circle mr-2" src={ this.state.profileImg }
+                                                  />
+                                            <span className="d-none d-md-inline-block">{ this.state.name } { this.state.lastName }</span>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-small">
                                             <a className="dropdown-item" href="#">
                                                 <i className="material-icons">&#xE7FD;</i> Profile</a>
                                             <a className="dropdown-item" href="#">
                                                 <i className="material-icons">vertical_split</i>Your Listings</a>
-                                            <a className="dropdown-item" href="#">
+                                            <a onClick={this.goNewListing} className="dropdown-item" href="#">
                                                 <i className="material-icons">note_add</i>Add Listing</a>
                                             <div className="dropdown-divider"></div>
-                                            <a className="dropdown-item text-danger" href="#">
+                                            <a onClick={this.logout} className="dropdown-item text-danger" href="#">
                                                 <i className="material-icons text-danger">&#xE879;</i> Logout </a>
                                         </div>
                                     </li>
@@ -209,7 +294,12 @@ class Profile extends React.Component {
                                 </nav>
                             </nav>
                         </div>
-
+                        <Alert theme="success" dismissible={this.closeAlert} open={this.state.uploadSuccess}>
+                            <i className="far fa-check-circle"></i>   Great! your profile has been updated!
+                        </Alert>
+                        <Alert theme="danger" dismissible={this.closeAlert} open={this.state.uploadFailed}>
+                            <i className="fas fa-exclamation-triangle"></i>   There seems to be something wrong with your data, <strong>try again!</strong>  &rarr;
+                        </Alert>
 
                         <div className="main-content-container container-fluid px-4">
                             <div className="page-header row no-gutters py-4">
@@ -223,29 +313,23 @@ class Profile extends React.Component {
                                     <div className="card card-small mb-4 pt-3">
                                         <div className="card-header border-bottom text-center">
                                             <div className="mb-3 mx-auto">
-                                                <img className="rounded-circle" src='../static/images/avatars/1.jpg' width="110" /></div>
-                                            <h4 className="mb-0">Pablo Arellano</h4>
-                                            <span className="text-muted d-block mb-2">Financial Analyst</span>
+                                                <img className="rounded-circle" src={this.state.profileImg} width="110" /></div>
+                                            <h4 className="mb-0">{ this.state.name} {this.state.lastName}</h4>
+                                            <span className="text-muted d-block mb-2">{ this.state.profession} / { this.state.alterEgo}</span>
                                             <button type="button" className="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2">
-                                                <i className="material-icons mr-1">person_add</i>Follow
+                                                <i className="material-icons mr-1">gps_fixed</i>{ this.state.location}
                                             </button>
                                         </div>
                                         <ul className="list-group list-group-flush">
                                             <li className="list-group-item px-4">
                                                 <div className="progress-wrapper">
-                                                    <strong className="text-muted d-block mb-2">Workload</strong>
-                                                    <div className="progress progress-sm">
-                                                        <div className="progress-bar bg-primary" role="progressbar"
-                                                             aria-valuenow="74" aria-valuemin="0" aria-valuemax="100"
-                                                             style={{width: '74%'}}>
-                                                            <span className="progress-value">74%</span>
-                                                        </div>
-                                                    </div>
+                                                    <strong className="text-muted d-block mb-2">Email</strong>
+                                                    <p>{ this.state.email }</p>
                                                 </div>
                                             </li>
                                             <li className="list-group-item p-4">
-                                                <strong className="text-muted d-block mb-2">Tell us about yourself</strong>
-                                                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</span>
+                                                <strong className="text-muted d-block mb-2">A bit about you:</strong>
+                                                <span>{ this.state.description}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -262,52 +346,59 @@ class Profile extends React.Component {
                                                         <form>
                                                             <div className="form-row">
                                                                 <div className="form-group col-md-6">
-                                                                    <label htmlFor="feFirstName">First Name</label>
-                                                                    <input type="text" className="form-control" id="feFirstName"
+                                                                    <label htmlFor="name">First Name</label>
+                                                                    <input onChange={this.handleChangeProfile} type="text" className="form-control" id="name"
                                                                            placeholder="First Name" /></div>
                                                                 <div className="form-group col-md-6">
-                                                                    <label htmlFor="feLastName">Last Name</label>
-                                                                    <input type="text" className="form-control" id="feLastName"
+                                                                    <label htmlFor="lastName">Last Name</label>
+                                                                    <input onChange={this.handleChangeProfile} type="text" className="form-control" id="lastName"
                                                                            placeholder="Last Name" /></div>
                                                             </div>
                                                             <div className="form-row">
                                                                 <div className="form-group col-md-6">
-                                                                    <label htmlFor="feEmailAddress">Email</label>
-                                                                    <input type="email" className="form-control" id="feEmailAddress"
-                                                                           placeholder="Email" value="sierra@example.com" /></div>
+                                                                    <label htmlFor="profession">Profession</label>
+                                                                    <input onChange={this.handleChangeProfile} type="text" className="form-control" id="profession"
+                                                                           placeholder="What do you do for a living?" /></div>
                                                                 <div className="form-group col-md-6">
-                                                                    <label htmlFor="fePassword">Password</label>
-                                                                    <input type="password" className="form-control" id="fePassword"
+                                                                    <label htmlFor="alterEgo">Alter Ego</label>
+                                                                    <input onChange={this.handleChangeProfile} type="text" className="form-control" id="alterEgo"
+                                                                           placeholder="What do you do when you are you?" /></div>
+                                                            </div>
+                                                            <div className="form-row">
+                                                                <div className="form-group col-md-6">
+                                                                    <label htmlFor="location">Location</label>
+                                                                    <input onChange={this.handleChangeProfile} type="text" className="form-control" id="location"
+                                                                           placeholder="Where do you reside?" /></div>
+                                                                <div className="form-group col-md-6">
+                                                                    <label htmlFor="profileImg">Profile Image</label><br />
+                                                                    <a id="profileImg" href="#" onClick={this.openImageModal} >Change Image </a></div>
+                                                            </div>
+
+                                                            <div className="form-row">
+                                                                <div className="form-group col-md-6">
+                                                                    <label htmlFor="email">Email</label>
+                                                                    <input onChange={this.handleChangeProfile} type="email" className="form-control" id="email"
+                                                                           placeholder="Email"  /></div>
+                                                                <div className="form-group col-md-6">
+                                                                    <label htmlFor="password">Password</label>
+                                                                    <input type="password" className="form-control" id="password"
                                                                            placeholder="Password" /></div>
                                                             </div>
-                                                            <div className="form-group">
-                                                                <label htmlFor="feInputAddress">Address</label>
-                                                                <input type="text" className="form-control" id="feInputAddress"
-                                                                       placeholder="1234 Main St" /></div>
-                                                            <div className="form-row">
-                                                                <div className="form-group col-md-6">
-                                                                    <label htmlFor="feInputCity">City</label>
-                                                                    <input type="text" className="form-control" id="feInputCity" />
-                                                                </div>
-                                                                <div className="form-group col-md-4">
-                                                                    <label htmlFor="feInputState">State</label>
-                                                                    <select id="feInputState" className="form-control">
-                                                                        <option selected>Choose...</option>
-                                                                        <option>...</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div className="form-group col-md-2">
-                                                                    <label htmlFor="inputZip">Zip</label>
-                                                                    <input type="text" className="form-control" id="inputZip" /></div>
-                                                            </div>
+
+
                                                             <div className="form-row">
                                                                 <div className="form-group col-md-12">
-                                                                    <label htmlFor="feDescription">Description</label>
-                                                                    <textarea className="form-control" name="feDescription"
-                                                                              rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea>
+                                                                    <label htmlFor="description">Description</label>
+                                                                    <textarea onChange={this.handleChangeProfile} className="form-control" id="description"
+                                                                              rows="5" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                              Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus
+                                                                              illum assumenda eligendi cumque?"></textarea>
                                                                 </div>
                                                             </div>
-                                                            <button type="submit" className="btn btn-accent">Update Account</button>
+                                                            <button disabled={this.state.loading} onClick={this.submitProfile} className="btn btn-accent">
+                                                                <span hidden={!this.state.loading} className="spinner-border spinner-border-sm"
+                                                                      role="status" aria-hidden="true"></span>
+                                                                Update Account</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -333,7 +424,7 @@ class Profile extends React.Component {
                                 </li>
                             </ul>
                             <span className="copyright ml-auto my-auto mr-2">Copyright © 2019
-              <a href="#" rel="nofollow"> watermelon</a>
+              <a href="#" rel="nofollow"> twise</a>
             </span>
                         </footer>
                     </main>
@@ -350,6 +441,8 @@ class Profile extends React.Component {
                     crossOrigin="anonymous" defer></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" defer></script>
             <script src="https://unpkg.com/shards-ui@latest/dist/js/shards.min.js" defer></script>
+            <script src="https://transloadit.edgly.net/releases/uppy/v1.4.0/uppy.min.js"></script>
+
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js" defer></script>
             <script src="../static/js/extras.1.1.0.min.js" defer></script>
             <script src="../static/js/shards-dashboards.1.1.0.min.js" defer></script>

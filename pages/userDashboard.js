@@ -14,21 +14,18 @@ class UserDashboard extends React.Component {
     }
 
     goServiceListings(event) {
-        console.log('aatemp');
         document.location.href = '/servicelist';
 
     }
 
     goProfile(event) {
-        console.log('aatemp');
-
         document.location.href = '/profile';
-
     }
 
     goNewListing(event) {
-        console.log('aatemp');
-
+        document.location.href = '/addlisting';
+    }
+    goNewListing(event) {
         document.location.href = '/addlisting';
 
     }
@@ -113,7 +110,7 @@ class UserDashboard extends React.Component {
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link " href="#">
-                                        <i className="material-icons">message</i>
+                                        <i className="material-icons" onClick={this.goMessages}>message</i>
                                         <span>Inbox</span>
                                     </a>
                                 </li>

@@ -7,14 +7,43 @@ import { FormInput, FormGroup, Button, Modal, ModalBody, ModalHeader, ModalFoote
 class NameForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {username: '', modalOpen: false, firstName: '', lastName: '', email: '', password: ''};
+        this.state = {username: '', modalOpen: false, firstName: '', lastName: '', email: '', password: '', showAlert: false, validInputs: false,
+        loginModal: false, login_username: '', login_password: ''};
 
         this.handleChange = this.handleChange.bind(this);
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.submitRegister = this.submitRegister.bind(this);
         this.onBlur = this.onBlur.bind(this);
+        this.closeAlert = this.closeAlert.bind(this);
+        this.loginModal = this.loginModal.bind(this);
+        this.submitLogin = this.submitLogin.bind(this);
+        this.handleChangeLogin = this.handleChangeLogin.bind(this);
+    }
 
+    submitLogin() {
+        fetch('https://watermelonapi.herokuapp.com/login',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: this.state.login_username, password: this.state.login_password
+                })
+            }).then(async (res) => {
+            const data = await res.json();
+            if (data.success === 'false') {
+                this.setState({showAlert: true});
+            } else {
+                await localStorage.setItem('userID', data.userID);
+                document.location.href = '/servicelist';
+            }
+        }).catch((error) => {
+            this.setState({showAlert: true});
+            console.log(JSON.stringify(error));
+        });
     }
 
     onBlur() {
@@ -39,12 +68,14 @@ class NameForm extends React.Component {
                         err.innerHTML = '<small>Must be at least 8 characters long</small>';
                         element.parentNode.insertBefore(err, element.nextSibling);
                     }
+                    this.setState({validInputs: false});
                 } else {
                     element.classList.remove('is-invalid');
                     element.classList.add('is-valid');
                     if (element.nextSibling !== null) {
                         element.nextSibling.remove();
                     }
+                    this.setState({validInputs: true});
                 }
                 break;
             case 'username':
@@ -57,12 +88,15 @@ class NameForm extends React.Component {
                         err.innerHTML = '<small>Must be at least 5 characters long </small>';
                         element.parentNode.insertBefore(err, element.nextSibling);
                     }
+                    this.setState({validInputs: false});
+
                 } else {
                     element.classList.remove('is-invalid');
                     element.classList.add('is-valid');
                     if (element.nextSibling !== null) {
                         element.nextSibling.remove();
                     }
+                    this.setState({validInputs: true});
                 }
                 break;
             case 'email':
@@ -75,12 +109,15 @@ class NameForm extends React.Component {
                         err.innerHTML = '<small>Must be an email </small>';
                         element.parentNode.insertBefore(err, element.nextSibling);
                     }
+                    this.setState({validInputs: false});
+
                 } else {
                     element.classList.remove('is-invalid');
                     element.classList.add('is-valid');
                     if (element.nextSibling !== null) {
                         element.nextSibling.remove();
                     }
+                    this.setState({validInputs: true});
                 }
                 break;
             default:
@@ -91,13 +128,55 @@ class NameForm extends React.Component {
     showModal() {
         this.setState({modalOpen: true});
     }
+
+    handleChangeLogin(event) {
+        const element = event.target;
+        const target = element.id;
+        const value = element.value;
+        this.setState({[target]: value});
+    }
+
+    loginModal() {
+        this.setState({loginModal: true});
+    }
+
     closeModal() {
-        this.setState({modalOpen: false});
+        this.setState({modalOpen: false, loginModal: false});
     }
 
     submitRegister() {
         // TODO: Handle authentication with backend
-        document.location.href = '/servicelist';
+        if (!this.state.validInputs) {
+            this.setState({showAlert: true});
+        } else {
+            fetch('https://watermelonapi.herokuapp.com/register',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        username: this.state.username, firstName: this.state.firstName, lastName: this.state.lastName,
+                        email: this.state.email, password: this.state.password
+                    })
+                }).then(async (res) => {
+                const data = await res.json();
+                if (data.success === 'false') {
+                    this.setState({showAlert: true});
+                } else {
+                    await localStorage.setItem('userID', data.userID);
+                    document.location.href = '/profile';
+                }
+            }).catch((error) => {
+                this.setState({showAlert: true});
+                console.log(JSON.stringify(error));
+            });
+        }
+    }
+
+    closeAlert() {
+        this.setState({showAlert: false});
     }
 
     render() {
@@ -105,7 +184,7 @@ class NameForm extends React.Component {
             <html data-wf-page="5d64641099c8ff63fad51eab" data-wf-site="5d64641099c8ff8c27d51ea6">
             <head>
                 <meta charSet="utf-8"/>
-                <title>watermelon</title>
+                <title>twise</title>
                 <meta content="width=device-width, initial-scale=1" name="viewport"/>
                 <meta content="Webflow" name="generator"/>
                 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
@@ -118,15 +197,34 @@ class NameForm extends React.Component {
                 <link href="../static/css/watermelon-325cb2.webflow.css" rel="stylesheet" type="text/css"/>
                 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
                         type="text/javascript"></script>
+                <link rel="apple-touch-icon" sizes="57x57" href="../static/favicon.ico/apple-icon-57x57.png"/>
+                    <link rel="apple-touch-icon" sizes="60x60" href="../static/favicon.ico/apple-icon-60x60.png"/>
+                        <link rel="apple-touch-icon" sizes="72x72" href="../static/favicon.ico/apple-icon-72x72.png"/>
+                            <link rel="apple-touch-icon" sizes="76x76" href="../static/favicon.ico/apple-icon-76x76.png"/>
+                                <link rel="apple-touch-icon" sizes="114x114" href="../static/favicon.ico/apple-icon-114x114.png"/>
+                                    <link rel="apple-touch-icon" sizes="120x120" href="../static/favicon.ico/apple-icon-120x120.png"/>
+                                        <link rel="apple-touch-icon" sizes="144x144" href="../static/favicon.ico/apple-icon-144x144.png"/>
+                                            <link rel="apple-touch-icon" sizes="152x152" href="../static/favicon.ico/apple-icon-152x152.png"/>
+                                                <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon.ico/apple-icon-180x180.png"/>
+                                                    <link rel="icon" type="image/png" sizes="192x192"  href="../static/favicon.ico/android-icon-192x192.png"/>
+                                                        <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon.ico/favicon-32x32.png"/>
+                                                            <link rel="icon" type="image/png" sizes="96x96" href="../static/favicon.ico/favicon-96x96.png"/>
+                                                                <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon.ico/favicon-16x16.png"/>
+                                                                    <link rel="manifest" href="../static/favicon.ico/manifest.json" />
+                                                                        <meta name="msapplication-TileColor" content="#ffffff"/>
+                                                                            <meta name="msapplication-TileImage" content="/ms-icon-144x144.png"/>
+                                                                                <meta name="theme-color" content="#ffffff"/>
+
             </head>
             <body className="body">
+
             <div data-collapse="medium" data-animation="default" data-duration="400" className="navbar w-nav">
                 <div className="nav-wrapper">
                     <h1 className="heading-24">watermelon</h1>
                     <nav role="navigation" className="nav-menu w-nav-menu"><a href="#" className="navlink w-nav-link">About
-                        Us</a><a href="#" className="navlink w-nav-link">How it Works</a><a onClick={this.showModal}
-                                                                                            href="#"
-                                                                                            className="navlink w-nav-link">Register</a>
+                        Us</a><a href="#" className="navlink w-nav-link">How it Works</a>
+                        <a onClick={this.showModal} href="#" className="navlink w-nav-link">Register</a>
+                        <a onClick={this.loginModal} href="#" className="navlink w-nav-link">Login</a>
                     </nav>
                     <div className="menu-button w-nav-button">
                         <div onClick={this.showModal} className="w-icon-nav-menu">
@@ -139,7 +237,13 @@ class NameForm extends React.Component {
 
                 <div className="hero-wrapper">
                     <Modal className="modalRegister" toggle={this.closeModal} open={this.state.modalOpen} >
-                        <ModalHeader closeAriaLabel="X">Register</ModalHeader>
+                        <Alert theme="warning" dismissible={this.closeAlert} open={this.state.showAlert}>
+                            There seems to be something wrong with your data, <strong>try again!</strong>  &rarr;
+                        </Alert>
+                        <ModalHeader closeAriaLabel="X">
+                            Register
+
+                        </ModalHeader>
                         <ModalBody>
                             <FormGroup>
                                 <div className="row formInput">
@@ -182,13 +286,46 @@ class NameForm extends React.Component {
                             </div>
                         </ModalFooter>
                     </Modal>
+
+                    <Modal className="modalLogin" toggle={this.closeModal} open={this.state.loginModal} >
+                        <Alert theme="warning" dismissible={this.closeAlert} open={this.state.showAlert}>
+                            There seems to be something wrong with your data, <strong>try again!</strong>  &rarr;
+                        </Alert>
+                        <ModalHeader closeAriaLabel="X">
+                            Login
+                        </ModalHeader>
+                        <ModalBody>
+                            <FormGroup>
+                                <div className="row formInput">
+                                    <div className="col-12">
+                                        <label htmlFor="username">Username</label>
+                                        <FormInput onBlur={this.onBlur}  min-length="3" required onChange={this.handleChangeLogin} value={this.state.login_username} id="login_username"/>
+                                    </div>
+                                </div>
+                                <div className="row formInput">
+                                    <div className="col-12">
+                                        <label htmlFor="username">Password</label>
+                                        <FormInput type="password" required onChange={this.handleChangeLogin} value={this.state.login_password} id="login_password"/>
+                                    </div>
+                                </div>
+                            </FormGroup>
+                        </ModalBody>
+                        <ModalFooter>
+                            <div className="row formInput">
+                                <Button onClick={this.closeModal} block theme="danger">Close</Button>
+                            </div>
+                            <div className="row formInput">
+                                <Button onClick={this.submitLogin} block theme="success">Login!</Button>
+                            </div>
+                        </ModalFooter>
+                    </Modal>
                     <h1 className="hero-heading">Find your passion in the world.</h1>
                     <p className="hero-para">Unique experiences and services around you. <br/>No money? No Problem. Get
                         15 coins when signing up.</p>
                     <div className="w-form">
                         <form id="email-form-3" name="email-form-3" data-name="Email Form 3"><input type="text"
                                                                                                     className="text-field-long-2 w-input"
-                                                                                                    autoFocus="true"
+                                                                                                    autoFocus={true}
                                                                                                     maxLength="256"
                                                                                                     name="email-2"
                                                                                                     data-name="Email 2"
