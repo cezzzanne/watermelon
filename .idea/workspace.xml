@@ -102,16 +102,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/messages.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9386">
-              <caret line="374" column="31" selection-start-line="374" selection-start-column="31" selection-end-line="374" selection-end-column="31" />
+            <state relative-caret-position="316">
+              <caret line="122" column="38" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
                 <element signature="n#!!block;n#closeAlert#0;n#Messages#0" />
                 <element signature="n#!!block;n#goDashboard#0;n#Messages#0" />
-                <element signature="n#!!block;n#goServiceListings#0;n#Messages#0" />
                 <element signature="n#!!block;n#goProfile#0;n#Messages#0" />
                 <element signature="n#!!block;n#goNewListing#0;n#Messages#0" />
               </folding>
@@ -131,10 +130,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/serviceList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
+            <state relative-caret-position="7292">
               <caret line="289" column="70" selection-start-line="289" selection-start-column="70" selection-end-line="289" selection-end-column="70" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
@@ -177,7 +176,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Serb</find>
       <find>card-hea</find>
       <find>purchase</find>
       <find>handlech</find>
@@ -207,6 +205,7 @@
       <find>loginModal</find>
       <find>http://127.0.0.1:8000/</find>
       <find>Modal</find>
+      <find>servicelist</find>
     </findStrings>
     <replaceStrings>
       <replace>http://127.0.0.1:8000/</replace>
@@ -367,12 +366,12 @@
       <workItem from="1571289619878" duration="104000" />
       <workItem from="1572130084487" duration="34865000" />
       <workItem from="1574039552823" duration="18000" />
-      <workItem from="1578360943531" duration="23792000" />
+      <workItem from="1578360943531" duration="24046000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165846000" />
+    <option name="totallyTimeSpent" value="166100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -632,16 +631,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/serviceList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="289" column="70" selection-start-line="289" selection-start-column="70" selection-end-line="289" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/addListing.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6265">
@@ -676,15 +665,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/messages.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9386">
-          <caret line="374" column="31" selection-start-line="374" selection-start-column="31" selection-end-line="374" selection-end-column="31" />
+        <state relative-caret-position="316">
+          <caret line="122" column="38" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
             <element signature="n#!!block;n#closeAlert#0;n#Messages#0" />
             <element signature="n#!!block;n#goDashboard#0;n#Messages#0" />
-            <element signature="n#!!block;n#goServiceListings#0;n#Messages#0" />
             <element signature="n#!!block;n#goProfile#0;n#Messages#0" />
             <element signature="n#!!block;n#goNewListing#0;n#Messages#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/serviceList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7292">
+          <caret line="289" column="70" selection-start-line="289" selection-start-column="70" selection-end-line="289" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
