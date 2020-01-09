@@ -32,7 +32,7 @@ class Profile extends React.Component {
 
 
     goServiceListings(event) {
-        document.location.href = '/servicelist';
+        document.location.href = '/serviceList';
 
     }
 
@@ -41,7 +41,7 @@ class Profile extends React.Component {
     }
 
     goNewListing(event) {
-        document.location.href = '/addlisting';
+        document.location.href = '/addListing';
 
     }
 

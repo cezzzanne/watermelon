@@ -77,7 +77,7 @@ class ServiceList extends React.Component {
     }
 
     goNewListing(event) {
-        document.location.href = '/addlisting';
+        document.location.href = '/addListing';
 
     }
 

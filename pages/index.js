@@ -38,7 +38,7 @@ class NameForm extends React.Component {
                 this.setState({showAlert: true});
             } else {
                 await localStorage.setItem('userID', data.userID);
-                document.location.href = '/servicelist';
+                document.location.href = '/serviceList';
             }
         }).catch((error) => {
             this.setState({showAlert: true});
